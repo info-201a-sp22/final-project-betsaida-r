@@ -32,10 +32,27 @@ tab_2 <- tabPanel(
   "Tab 2",
   sidebarLayout(
     sidebarPanel(
-      
+      selectInput(
+        inputId = "category_selection",
+        label = "Category Selection",
+        choices = c(kb_df$category),
+        # True allows you to select multiple choices...
+        multiple = T,
+        selected = c("alcohol & drugs", "sexual", "profanity")
+      ),
+      sliderInput(
+        inputId = "year_selection",
+        label = h4("Select Years"),
+        min = min(kb_df$year),
+        max = max(kb_df$year),
+        step = 0,
+        sep = "",
+        value = c(2012, 2016)
+      )
     ),
     mainPanel(
-      
+      plotlyOutput(outputId = "category_hist"),
+      h2("Findings")
     ),
   )
 )
@@ -53,6 +70,7 @@ tab_3 <- tabPanel(
   )
 )
 
+# Conclusion tab
 conclusion <- tabPanel(
   # Title of tab
   "Conclusion",
