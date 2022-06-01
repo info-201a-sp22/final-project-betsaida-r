@@ -11,7 +11,7 @@ server <- function(input, output) {
     filtered_df <- kb_df %>% 
       # Filter for category
       filter(category %in% input$category_selection) %>% 
-      filter(year >= input$year_selection[1] & year >= input$year_selection[2])
+      filter(year >= input$year_selection[1] & year <= input$year_selection[2])
     
     category_hist <- ggplot(data = filtered_df) +
       geom_histogram(aes(x = year, fill = category),

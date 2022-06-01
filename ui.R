@@ -29,12 +29,12 @@ tab_1 <- tabPanel(
 
 # Tab 2
 tab_2 <- tabPanel(
-  "Tab 2",
+  "Censorship by Category",
   sidebarLayout(
     sidebarPanel(
       selectInput(
         inputId = "category_selection",
-        label = "Category Selection",
+        label = h4("Select Categories to Compare:"),
         choices = c(kb_df$category),
         # True allows you to select multiple choices...
         multiple = T,
@@ -42,10 +42,10 @@ tab_2 <- tabPanel(
       ),
       sliderInput(
         inputId = "year_selection",
-        label = h4("Select Years"),
+        label = h4("Select Years:"),
         min = min(kb_df$year),
         max = max(kb_df$year),
-        step = 0,
+        step = 1,
         sep = "",
         value = c(2012, 2016)
       )
