@@ -25,6 +25,8 @@ server <- function(input, output) {
     censorship_over_time <- ggplot(data = total_censored) +
       geom_line(mapping = aes(x = year, y = total_unique_instances)) +
       geom_point(mapping = aes(x = year, y = total_unique_instances)) +
+      scale_x_continuous(breaks = seq(2001, 2019, by = 1)) +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
       labs(
         title = "Rate of Censorship in KidzBop Songs Over Time",
         x = "Year (2001 to 2019)",
