@@ -6,6 +6,32 @@ kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kid
 
 server <- function(input, output) {
   
+  # output tab 1
+  
+  output$time_lineplot <- renderPlotly({
+    
+    unique_og_lyrics <- kb_df %>%
+      distinct(across(-count))
+    
+    total_censored <- unique_og_lyrics %>%
+      group_by(year) %>%
+      summarize(total_unique_instances = n())
+    
+    censorship_over_time <- ggplot(data = total_censored) +
+      geom_line(mapping = aes(x = year, y = total_unique_instances)) +
+      geom_point(mapping = aes(x = year, y = total_unique_instances)) +
+      labs(
+        title = "Rate of Censorship in KidzBop Songs Over Time",
+        x = "Year (2001 to 2019)",
+        y = "Total Unique Instances of Censorship"
+      )
+    
+    ggplotly(censorship_over_time)
+    
+    return(time_lineplot)
+    
+  })
+  
   # output tab 2
 #  output$category_hist <- renderPlotly({
     
