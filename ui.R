@@ -1,3 +1,4 @@
+library(ggplot2)
 library(plotly)
 library(bslib)
 library(markdown)
@@ -59,13 +60,40 @@ tab_2 <- tabPanel(
 
 # Tab 3
 tab_3 <- tabPanel(
-  "Tab 3",
+  "Category Breakdown",
   sidebarLayout(
     sidebarPanel(
-      
+      sidebar_panel_widget <- sidebarPanel(
+        checkboxGroupInput(
+          inputId = "category_selection",
+          label = "Categories",
+          choices = c("alcohol & drugs", 
+                      "identity", 
+                      "profanity", 
+                      "sexual", "violence", 
+                      "other"),
+          # True allows you to select multiple choices...
+          # multiple = TRUE,
+          selected = c("alcohol & drugs", 
+                       "identity", 
+                       "profanity", 
+                       "sexual", "violence", 
+                       "other")
+        ),
+        sliderInput(
+          inputId = "year_selection",
+          label = h4("Select Years:"),
+          min = min(kb_df$year),
+          max = max(kb_df$year),
+          step = 1,
+          sep = "",
+          value = c(2012, 2016)
+        )
+      ),
     ),
     mainPanel(
-      
+      plotlyOutput(outputId = "pie_chart"),
+      h2("Findings")
     ),
   )
 )
