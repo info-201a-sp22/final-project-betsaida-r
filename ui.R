@@ -24,7 +24,7 @@ tab_1 <- tabPanel(
     ),
     mainPanel(
       
-    ),
+    )
   )
 )
 
@@ -54,49 +54,47 @@ tab_2 <- tabPanel(
     mainPanel(
       plotlyOutput(outputId = "category_hist"),
       h2("Findings")
-    ),
+    )
   )
 )
+
 
 # Tab 3
 tab_3 <- tabPanel(
   "Category Breakdown",
   sidebarLayout(
     sidebarPanel(
-      sidebar_panel_widget <- sidebarPanel(
-        checkboxGroupInput(
-          inputId = "category_selection",
-          label = "Categories",
-          choices = c("alcohol & drugs", 
-                      "identity", 
-                      "profanity", 
-                      "sexual", "violence", 
-                      "other"),
-          # True allows you to select multiple choices...
-          # multiple = TRUE,
-          selected = c("alcohol & drugs", 
-                       "identity", 
-                       "profanity", 
-                       "sexual", "violence", 
-                       "other")
-        ),
-        sliderInput(
-          inputId = "year_selection",
-          label = h4("Select Years:"),
-          min = min(kb_df$year),
-          max = max(kb_df$year),
-          step = 1,
-          sep = "",
-          value = c(2012, 2016)
-        )
+      sliderInput(
+        inputId = "years_selection",
+        label = h4("Select Years:"),
+        min = min(kb_df$year),
+        max = max(kb_df$year),
+        step = 1,
+        sep = "",
+        value = c(2012, 2016)
       ),
+      checkboxGroupInput(
+        inputId = "categories_selection",
+        label = h4("Select Categories to Compare:"),
+        choices = c("alcohol & drugs", 
+                    "identity",
+                    "profanity",
+                    "violence", 
+                    "other"),
+        selected = c("alcohol & drugs", 
+                     "identity",
+                     "profanity",
+                     "violence", 
+                     "other")
+      )
     ),
     mainPanel(
       plotlyOutput(outputId = "pie_chart"),
       h2("Findings")
-    ),
+    )
   )
 )
+
 
 # Conclusion tab
 conclusion <- tabPanel(
