@@ -48,7 +48,15 @@ tab_1 <- tabPanel(
                   value = c(2001,2019))
       ),
     mainPanel(
-      plotlyOutput(outputId = "time_lineplot")
+      plotlyOutput(outputId = "time_lineplot"),
+      p("This plot shows the overall rate of censorship of KidzBop songs over time and provides insight to whether music for kids has gotten more or less censored over time. The songs in the dataset go as far back as 2001 and are as recent as 2019. A song's lyrics could be censored multiple times, some of those times involve unique instances of different censored words and how they are used in the lyrics, and other times where the same censored words and their respective lyrics were repeated. Total unique instances refers to the unique lyrics and circumstances that were censored in order to focus on the more thoughtful censorship choices that were being made. Repeated lyrics were not counted.
+"),
+      h2("Findings"),
+      p("There is an overall positive trend: song lyrics have gotten more censored over time. The lowest amount of censored lyrics was in 2001 with 3, and the highest amount of censored lyrics was in 2019 with 123. In the early 2000's, the number of censored lyrics on Kidz Bop albums were not significantly different from each other. The first big jump occurred in 2006 with the instances of censored lyrics being nearly five times larger than the previous year. In 2007, the number of instances skyrocketed to 47. Since then, the trend has been mostly positive. While there have been drops in the instances of censored lyrics, those drops have never dipped below 20 since 2006 and many of the increases are above 47. The biggest jump between two years occurred between 2008 and 2009, with instances going from 22 to 58, a jump more than double the amount."),
+      p("These observations prompt many questions. Have song lyrics actually gotten more explicit over time, according to the censorship standards Kidz Bop had back in 2001? Have pop songs in general become more explicit in recent years? Or have Kidz Bop's standards for censorship gotten more strict over time, with uncensored lyrics from years past being censored in current songs?"),
+      p("Unfortunately, data on the number of songs on each year's Kidz Bop album, as well as what all of the songs on those albums were, was not in the data set. In order to get closer to answering these questions, we'd need to collect that information in order to see the proportion or rate of censored content in an album, as well as apply today's Kidz Bop censorship standards to the songs included in past albums to see if those standards themselves have changed."),
+      p("Regarding the occasional drops in censorship, these drops could potentially be explained as either less overall censoring due to the song selection for that year's edition of Kidz Bop or a lack of representation for said year in the dataset. 2001 could have potentially had top hits that were just as worth censoring in 2019, but they simply are not represented as well. These drops also aren't consistent. They more so happen sporadically, which could also be a representation issue or a reflection of fluctuating trends."),
+      p("Nonetheless, we do see a very noticeable positive trend that indicates that Kidz Bop lyrics have been more and more censored over time.")
     )
   )
 )
