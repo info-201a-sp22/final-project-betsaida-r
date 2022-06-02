@@ -3,7 +3,7 @@ library(plotly)
 library(dplyr)
 library(tidyverse)
 
-kb_df <- read.csv("KB_censored-lyrics.csv", stringsAsFactors = F)
+kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
 
 by_artist <- kb_df %>% 
