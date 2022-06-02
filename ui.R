@@ -17,7 +17,7 @@ intro_tab <- tabPanel(
 
 # Tab 1
 tab_1 <- tabPanel(
-  "Tab 1",
+  "Censorship Over Time",
   sidebarLayout(
     sidebarPanel(
       
