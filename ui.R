@@ -3,8 +3,7 @@ library(plotly)
 library(bslib)
 library(markdown)
 library(shiny)
-
-kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
+source('server.R')
 
 # Home page tab
 intro_tab <- tabPanel(
@@ -20,16 +19,10 @@ tab_1 <- tabPanel(
   "Censorship Over Time",
   sidebarLayout(
     sidebarPanel(
-    #  selectInput(
-    #    inputId = "country_selection",
-    #    label = "Countries",
-    #    choices = c(unique(co2_rate_df$country)),
-    #    selected = "World"
-   #     ),
       sliderInput(inputId = "year_selection",
-                  label = h3("Time Range"),
-                  min(min(total_censored$year)),
-                  max(max(total_censored$year)),
+                  label = h3("Year Range"),
+                  min(min(kb_df$year)),
+                  max(max(kb_df$year)),
                   sep = "",
                   step = 1,
                   value = c(2001,2019))
