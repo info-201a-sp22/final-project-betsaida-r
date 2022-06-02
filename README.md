@@ -1,4 +1,4 @@
-# Censo*rship in Kidz Bop Songs
+# Cens*rship in Kidz Bop Songs
 ### INFO 201 "Foundational Skills for Data Science" — Spring 2022
 
 Authors: Ramya Arivazhagan | Josh Auvaa | Kaylyn Le | Betsaida Rodriguez
@@ -9,9 +9,9 @@ Link: Link to your Shiny App here
 
 ## Introduction
 
->>Kidz Bop can act as early exposure to popular music and culture for kids. Their goal is to take out any “adult” lyrics in order to make popular songs “kid-friendly”, so that kids may listen to the most popular songs of the day without their parents worrying about them being exposed to inappropriate content. While media and music for kids may be seen as too juvenile or too simple to be examined critically, seeing what exactly is censored and left uncensored in children’s music, like Kidz Bop, gives us insight into what words, topics, and even values are deemed appropriate for children. There are many questions that can be explored with the collected data, but we’ve chosen to focus on these ones:
+Kidz Bop can act as early exposure to popular music and culture for kids. Their goal is to take out any “adult” lyrics in order to make popular songs “kid-friendly”, so that kids may listen to the most popular songs of the day without their parents worrying about them being exposed to inappropriate content. While media and music for kids may be seen as too juvenile or too simple to be examined critically, seeing what exactly is censored and left uncensored in children’s music, like Kidz Bop, gives us insight into what words, topics, and even values are deemed appropriate for children. There are many questions that can be explored with the collected data, but we’ve chosen to focus on these ones:
 
->>1. Has music for kids gotten more or less censored over time?
+1. Has music for kids gotten more or less censored over time?
 2. What kinds of words experience the most censorship? Do certain categories of censored words get more censored than others? If so, why?
 3. Is there a limit to how much Kidz Bop is willing to censor a song over omitting it from their album completely?
 4. Does Kidz Bop censor implied language or only explicit language? To what extent?
@@ -27,7 +27,4 @@ Link: Link to your Shiny App here
 
 ### Limitations and Challenges
 >>As previously mentioned, a limitation with our project comes with the fact that our dataset does not disclose the reasoning behind why certain words and phrases undergo censorship. Given the subjectivity of this practice, we may need to consider the context of the songs while making sense of our findings. This will affect our ability to analyze cultural attitudes around censorship in music specifically marketed for children through outlets like Kidz Bop. We will also have to keep in mind that we are analyzing only a sample of Kidz Bop songs and not their entire discography, thus the conclusions we draw may not be completely representative of their work. With that, our dataset also does not have too much variety in terms of numerical data. Because the majority of our columns contain categorical or identification data, we once again are limited in terms of what types of analysis and visualizations we can conduct and produce.
-
-
-
 

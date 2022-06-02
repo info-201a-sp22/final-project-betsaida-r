@@ -5,10 +5,6 @@ library(tidyverse)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
-by_badword <- kb_df %>% 
-  group_by(badword) %>% 
-  mutate(word_total = sum(count, na.rm = TRUE))
-
 server <- function(input, output) {
   
   # output tab 1
@@ -21,7 +17,7 @@ server <- function(input, output) {
     total_censored <- unique_og_lyrics %>%
       group_by(year) %>%
       summarize(total_unique_instances = n()) %>%
-      filter(year >= input$year_selection[1] & year <= input$year_selection[2])
+      filter(year >= input$year_selected[1] & year <= input$year_selected[2])
     
     censorship_over_time <- ggplot(data = total_censored) +
       geom_line(mapping = aes(x = year, y = total_unique_instances)) +
@@ -59,13 +55,21 @@ of censorship in the newest Kidz Bop record."))) +
       labs(title="Distribution of Censored Lyric Categories in Kidz Bop Over Time",
            x ="Year", 
            y = "Censorship Frequency")
-    
+#    updateSelectizeInput(session, 'category_selection', 
+#                         choices = c("alcohol & drugs", "profanity", "sexual",
+#                                     "identity", "other", "violence"), 
+#                         server = TRUE)
     return(category_hist)
     
-  })
+    
+  }) #+
   
   # output tab 3
   output$scatter_plot <- renderPlotly({
+    
+    by_badword <- kb_df %>% 
+      group_by(badword) %>% 
+      mutate(word_total = sum(count, na.rm = TRUE))
     
     badword_filtered <- by_badword %>% 
       filter(ogArtist %in% input$artist_select) %>% 
@@ -75,13 +79,12 @@ of censorship in the newest Kidz Bop record."))) +
       geom_point(aes(x = category, 
                      y = ogArtist,
                      size = word_total)) + 
-      labs(title="Title",
-           x ="Year", 
-           y = "Censorship Frequency")
+      labs(title="Censorship by Artist by Category",
+           x ="", 
+           y = "")
     
     return(scattered_artist) 
-
     
-  }) 
+  })
   
 }
