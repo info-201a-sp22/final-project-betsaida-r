@@ -1,13 +1,23 @@
 library(ggplot2)
 library(plotly)
 library(dplyr)
+library(tidyverse)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
-category_by_year <- kb_df %>% 
-  group_by(year) %>% 
-  mutate(song_total = sum(count, na.rm = TRUE)) %>% 
-  select(year, song_total, category)
+by_artist <- kb_df %>% 
+  group_by(ogArtist) %>% 
+  mutate(artist_total = sum(count, na.rm = TRUE))
+
+by_category <- by_artist %>% 
+  group_by(category) %>% 
+  select(category, count) %>% 
+  mutate(wordtotal = sum(count)) %>% 
+  distinct(category, .keep_all = TRUE)
+
+category_breakdown <- by_category %>% 
+  group_by(category) %>% 
+  mutate(percent_column = (paste0(round((wordtotal/2966)*100), "%")))
 
 server <- function(input, output) {
   
@@ -25,6 +35,8 @@ server <- function(input, output) {
     censorship_over_time <- ggplot(data = total_censored) +
       geom_line(mapping = aes(x = year, y = total_unique_instances)) +
       geom_point(mapping = aes(x = year, y = total_unique_instances)) +
+      scale_x_continuous(breaks = seq(2001, 2019, by = 1)) +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
       labs(
         title = "Rate of Censorship in KidzBop Songs Over Time",
         x = "Year (2001 to 2019)",
@@ -58,21 +70,42 @@ server <- function(input, output) {
   }) #+
   
   # output tab 3
-  output$pie_chart <- renderPlotly({
+  output$category_pie <- renderPlotly({
 
-    category_filtered <- category_by_year %>% 
-      filter(category %in% input$categories_selection) %>% 
-      filter(year %in% input$years_selection)
+    category_filtered <- category_breakdown %>% 
+      filter(category %in% input$categories_selection)  
+#      filter(year %in% input$years_selection)
     
     # make pie chart
-    pie_chart <- ggplot(category_filtered, 
-                        aes(x = "",
-                            y = song_total,
-                            fill = category)) +
-      geom_bar(stat = "identity", width = 1) +
-      coord_polar("y", start = 0)
+#    pie_chart <- ggplot(category_filtered, 
+##                        aes(x = year),
+#                        aes(x = "",
+#                            y = song_total,
+#                            fill = category)) +
+#      geom_bar(stat = "identity", width = 1) +
+#      coord_polar("y", start = 0)
     
-    return(pie_chart)
+#    return(pie_chart)
+    
+    category_pie <- ggplot(data = category_breakdown,
+                           aes(x = "",
+                               y = wordtotal,
+                               fill = category)) +
+      geom_col() +
+      coord_polar("y", start = 0) +
+      theme(panel.background = element_blank(),
+            axis.line = element_blank(),
+            axis.text = element_blank(),
+            axis.ticks = element_blank(),
+            axis.title = element_blank(),
+            plot.title = element_text(hjust = 0.5, size = 18)) +
+      geom_text(aes(label = percent_column),
+                position = position_stack(vjust = 0.5)) +
+      labs(title = "Category Breakdown", 
+           x = "", 
+           y = "")
+    
+    return(category_pie)
     
   }) 
   
