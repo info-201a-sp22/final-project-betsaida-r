@@ -5,9 +5,20 @@ library(tidyverse)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
-by_badword <- kb_df %>% 
-  group_by(badword) %>% 
-  mutate(word_total = sum(count, na.rm = TRUE))
+
+by_artist <- kb_df %>% 
+  group_by(ogArtist) %>% 
+  mutate(artist_total = sum(count, na.rm = TRUE))
+
+by_category <- by_artist %>% 
+  group_by(category) %>% 
+  select(category, count) %>% 
+  mutate(wordtotal = sum(count)) %>% 
+  distinct(category, .keep_all = TRUE)
+
+category_breakdown <- by_category %>% 
+  group_by(category) %>% 
+  mutate(percent_column = (paste0(round((wordtotal/2966)*100), "%")))
 
 server <- function(input, output) {
   
@@ -65,30 +76,46 @@ of censorship in the newest Kidz Bop record."))) +
 #                         server = TRUE)
     return(category_hist)
     
-<<<<<<< HEAD
     
   }) #+
-=======
-  })
->>>>>>> 7b6bba730e87420f72674d027b0461a26d819b82
   
   # output tab 3
-  output$scatter_plot <- renderPlotly({
-    
-    badword_filtered <- by_badword %>% 
-      filter(ogArtist %in% input$artist_select) %>% 
-      filter(category %in% input$categories_selection) 
-    
-    scattered_artist <- ggplot(data = badword_filtered) +
-      geom_point(aes(x = category, 
-                     y = ogArtist,
-                     size = word_total)) + 
-      labs(title="Title",
-           x ="Year", 
-           y = "Censorship Frequency")
-    
-    return(scattered_artist) 
+  output$category_pie <- renderPlotly({
 
+    category_filtered <- category_breakdown %>% 
+      filter(category %in% input$categories_selection)  
+#      filter(year %in% input$years_selection)
+    
+    # make pie chart
+#    pie_chart <- ggplot(category_filtered, 
+##                        aes(x = year),
+#                        aes(x = "",
+#                            y = song_total,
+#                            fill = category)) +
+#      geom_bar(stat = "identity", width = 1) +
+#      coord_polar("y", start = 0)
+    
+#    return(pie_chart)
+    
+    category_pie <- ggplot(data = category_breakdown,
+                           aes(x = "",
+                               y = wordtotal,
+                               fill = category)) +
+      geom_col() +
+      coord_polar("y", start = 0) +
+      theme(panel.background = element_blank(),
+            axis.line = element_blank(),
+            axis.text = element_blank(),
+            axis.ticks = element_blank(),
+            axis.title = element_blank(),
+            plot.title = element_text(hjust = 0.5, size = 18)) +
+      geom_text(aes(label = percent_column),
+                position = position_stack(vjust = 0.5)) +
+      labs(title = "Category Breakdown", 
+           x = "", 
+           y = "")
+    
+    return(category_pie)
     
   }) 
   
