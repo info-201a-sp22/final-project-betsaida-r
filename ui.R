@@ -53,7 +53,8 @@ tab_2 <- tabPanel(
     ),
     mainPanel(
       plotlyOutput(outputId = "category_hist"),
-      h2("Findings")
+      h2("Findings"),
+      p("This visualization presents how frequently each category is censored in Kidz Bop songs over the dataset's timeline. Interacting with the chart helps us answer the question, 'What kinds of words experience the most censorship? Do certain categories of censored words get more censored than others If so, why?', along with, 'How does censorship in Kidz Bop reflect values of parents (or those doing the censorship) over time?'.  ")
     )
   )
 )
