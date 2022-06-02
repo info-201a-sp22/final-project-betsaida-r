@@ -31,22 +31,27 @@ server <- function(input, output) {
     
     total_censored <- unique_og_lyrics %>%
       group_by(year) %>%
-      summarize(total_unique_instances = n())
+      summarize(total_unique_instances = n()) %>%
+      filter(year >= input$year_selection[1] & year <= input$year_selection[2])
     
     censorship_over_time <- ggplot(data = total_censored) +
       geom_line(mapping = aes(x = year, y = total_unique_instances)) +
-      geom_point(mapping = aes(x = year, y = total_unique_instances)) +
-      scale_x_continuous(breaks = seq(2001, 2019, by = 1)) +
+      geom_point(mapping = aes(x = year, y = total_unique_instances,
+                               text = paste(
+      "In the year", year, "there were", total_unique_instances, "unique instances
+of censorship in the newest Kidz Bop record."))) +
+      scale_x_continuous(breaks = seq(min(total_censored$year), 
+                                      max(total_censored$year), by = 1)) +
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
       labs(
-        title = "Rate of Censorship in KidzBop Songs Over Time",
+        title = "Rate of Censorship in Kidz Bop Songs Over Time",
         x = "Year (2001 to 2019)",
         y = "Total Unique Instances of Censorship"
       )
     
-    ggplotly(censorship_over_time)
+    ggplotly(censorship_over_time, tooltip = "text")
     
-    return(time_lineplot)
+    return(censorship_over_time)
     
   })
   

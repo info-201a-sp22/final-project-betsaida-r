@@ -20,10 +20,22 @@ tab_1 <- tabPanel(
   "Censorship Over Time",
   sidebarLayout(
     sidebarPanel(
-      
-    ),
+    #  selectInput(
+    #    inputId = "country_selection",
+    #    label = "Countries",
+    #    choices = c(unique(co2_rate_df$country)),
+    #    selected = "World"
+   #     ),
+      sliderInput(inputId = "year_selection",
+                  label = h3("Time Range"),
+                  min(min(total_censored$year)),
+                  max(max(total_censored$year)),
+                  sep = "",
+                  step = 1,
+                  value = c(2001,2019))
+      ),
     mainPanel(
-      
+      plotlyOutput(outputId = "time_lineplot")
     )
   )
 )
