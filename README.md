@@ -1,17 +1,13 @@
-# Censo*rship in Kidz Bop Songs
-## INFO 201 "Foundational Skills for Data Science" — Spring 2022
+# Cens*rship in Kidz Bop Songs
+### INFO 201 "Foundational Skills for Data Science" — Spring 2022
 
 Authors: Ramya Arivazhagan | Josh Auvaa | Kaylyn Le | Betsaida Rodriguez
 
 Link: Link to your Shiny App here
 
-Please create the necessary files for your multi-page Shiny app in this GitHub repository. Consult the Canvas assignment for more details. Be sure to publish your app on Shinyapps.io.
 
-When you are finished, please add the text from your introductory and concluding pages below. You might want to use this GitHub repository as part of your digital portfolio, so you want this README.md to offer a brief description of the project and key takeaways.
 
-Feel free to delete these instructions for your final README.md file and to make your GitHub repository public if you would like others to be able to see it.
-
-# Introduction
+## Introduction
 
 Kidz Bop can act as early exposure to popular music and culture for kids. Their goal is to take out any “adult” lyrics in order to make popular songs “kid-friendly”, so that kids may listen to the most popular songs of the day without their parents worrying about them being exposed to inappropriate content. While media and music for kids may be seen as too juvenile or too simple to be examined critically, seeing what exactly is censored and left uncensored in children’s music, like Kidz Bop, gives us insight into what words, topics, and even values are deemed appropriate for children. There are many questions that can be explored with the collected data, but we’ve chosen to focus on these ones:
 
@@ -22,4 +18,5 @@ Kidz Bop can act as early exposure to popular music and culture for kids. Their 
 5. How does censorship in Kidz Bop reflect values of parents (or those doing the censorship) over time?
 
 
-# Conclusion / Summary Takeaways
+## Summary
+Overall, more song lyrics have been censored over time. This observation prompts the question of whether song lyrics have gotten more explicit over time, or if uncensored lyrics from years past are being censored in current songs.The most censored category of words overall is “Profanity,” which includes many/most swear words. We also see from the charts that “Identity” is the least censored category, and this includes words that describe gender and sexuality, such as “woman,” and “lesbian.” The “Other” category also sees the least censorship, which includes religiously-associated words and other words that are deemed to be inappropriate for children. While there does appear to be some upward trends in censorship for categories like “alcohol & drugs” and “profanity”, this doesn’t necessarily imply that Kidz Bop has become more strict on how they’re policing these lyrics. Oftentimes Kidz Bop will cover the most popular or highest charting songs of the year. Thus, these trends may better portray what “categories” of music are most successful among general society.
