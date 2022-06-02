@@ -83,7 +83,7 @@ tab_2 <- tabPanel(
 
 # Tab 3
 tab_3 <- tabPanel(
-  "Category Breakdown",
+  "Censorship by Artist",
   sidebarLayout(
     sidebar_panel_widget <- sidebarPanel(
       selectInput(
@@ -94,8 +94,9 @@ tab_3 <- tabPanel(
         multiple = T,
         selected = c("Taylor Swift", 
                      "Bruno Mars",
-                     "Ariana Grande",
-                     "Lady Gaga")
+                     "Green Day",
+                     "Lady Gaga",
+                     "Lil Nas X")
       ),
         checkboxGroupInput(
           inputId = "categories_selection",
@@ -114,7 +115,9 @@ tab_3 <- tabPanel(
       ),
     mainPanel(
       plotlyOutput(outputId = "scatter_plot"),
-      h2("Findings")
+      h2("Findings"),
+      p("This visualization presents a visual comparisons between artists and the amount of censored language attributed to them by Kidz Bop. The chart displays the number of curse words per category for each artist. The user can choose which categories and artists to compare. This way, the user can compare censorship by both category and by artist.It also lets us see what kinds of words are most censored for each artist compared to other artists as well as words in other categories for that same artist."),
+      p("Interacting with the scatterplot helps us answer the question: 'How does censorship in Kidz Bop reflect values over time?', specifically looking at the cultural values of artist relevancy. Certain artists are more censored than others, but their songs still make the Kidz Bop tracklist because they are that socially relevant that kids would notice if the popular songs were missing. This shows the lengths to which people in the childrens' music industry will go to in order to stay relevant, and they do this by appealing to the values of children via their favorite artists and to parents via intense scensorship"),
     )
   )
 )

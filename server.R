@@ -5,6 +5,7 @@ library(tidyverse)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
+<<<<<<< HEAD
 
 by_artist <- kb_df %>% 
   group_by(ogArtist) %>% 
@@ -20,6 +21,8 @@ category_breakdown <- by_category %>%
   group_by(category) %>% 
   mutate(percent_column = (paste0(round((wordtotal/2966)*100), "%")))
 
+=======
+>>>>>>> e3dabe6f58eab317d2f3a6e9df7e27069af7e30f
 server <- function(input, output) {
   
   # output tab 1
@@ -86,6 +89,7 @@ of censorship in the newest Kidz Bop record."))) +
       filter(category %in% input$categories_selection)  
 #      filter(year %in% input$years_selection)
     
+<<<<<<< HEAD
     # make pie chart
 #    pie_chart <- ggplot(category_filtered, 
 ##                        aes(x = year),
@@ -116,6 +120,25 @@ of censorship in the newest Kidz Bop record."))) +
            y = "")
     
     return(category_pie)
+=======
+    by_badword <- kb_df %>% 
+      group_by(badword) %>% 
+      mutate(word_total = sum(count, na.rm = TRUE))
+    
+    badword_filtered <- by_badword %>% 
+      filter(ogArtist %in% input$artist_select) %>% 
+      filter(category %in% input$categories_selection) 
+    
+    scattered_artist <- ggplot(data = badword_filtered) +
+      geom_point(aes(x = category, 
+                     y = ogArtist,
+                     size = word_total)) + 
+      labs(title="Title",
+           x ="Category", 
+           y = "Artist")
+    
+    return(scattered_artist) 
+>>>>>>> e3dabe6f58eab317d2f3a6e9df7e27069af7e30f
     
   }) 
   
