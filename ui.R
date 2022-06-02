@@ -39,7 +39,7 @@ tab_1 <- tabPanel(
   "Censorship Over Time",
   sidebarLayout(
     sidebarPanel(
-      sliderInput(inputId = "year_selection",
+      sliderInput(inputId = "year_selected",
                   label = h3("Select Years:"),
                   min(min(kb_df$year)),
                   max(max(kb_df$year)),

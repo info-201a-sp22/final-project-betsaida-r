@@ -17,7 +17,7 @@ server <- function(input, output) {
     total_censored <- unique_og_lyrics %>%
       group_by(year) %>%
       summarize(total_unique_instances = n()) %>%
-      filter(year >= input$year_selection[1] & year <= input$year_selection[2])
+      filter(year >= input$year_selected[1] & year <= input$year_selected[2])
     
     censorship_over_time <- ggplot(data = total_censored) +
       geom_line(mapping = aes(x = year, y = total_unique_instances)) +
