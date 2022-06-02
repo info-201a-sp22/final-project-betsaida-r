@@ -3,7 +3,7 @@
 
 Authors: Ramya Arivazhagan | Josh Auvaa | Kaylyn Le | Betsaida Rodriguez
 
-Link: Link to your Shiny App here
+Link: https://joshauvaa.shinyapps.io/final-project-betsaida-r/
 
 
 
