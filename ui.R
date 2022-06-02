@@ -3,8 +3,7 @@ library(plotly)
 library(bslib)
 library(markdown)
 library(shiny)
-
-kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
+source('server.R')
 
 unique_artist <- kb_df %>% 
   group_by(songName) %>% 
@@ -28,10 +27,16 @@ tab_1 <- tabPanel(
   "Censorship Over Time",
   sidebarLayout(
     sidebarPanel(
-      
-    ),
+      sliderInput(inputId = "year_selection",
+                  label = h3("Year Range"),
+                  min(min(kb_df$year)),
+                  max(max(kb_df$year)),
+                  sep = "",
+                  step = 1,
+                  value = c(2001,2019))
+      ),
     mainPanel(
-      
+      plotlyOutput(outputId = "time_lineplot")
     )
   )
 )
