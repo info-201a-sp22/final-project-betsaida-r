@@ -16,3 +16,7 @@ Kidz Bop can act as early exposure to popular music and culture for kids. Their 
 3. Is there a limit to how much Kidz Bop is willing to censor a song over omitting it from their album completely?
 4. Does Kidz Bop censor implied language or only explicit language? To what extent?
 5. How does censorship in Kidz Bop reflect values of parents (or those doing the censorship) over time?
+
+
+## Summary
+Overall, more song lyrics have been censored over time. This observation prompts the question of whether song lyrics have gotten more explicit over time, or if uncensored lyrics from years past are being censored in current songs.The most censored category of words overall is “Profanity,” which includes many/most swear words. We also see from the charts that “Identity” is the least censored category, and this includes words that describe gender and sexuality, such as “woman,” and “lesbian.” The “Other” category also sees the least censorship, which includes religiously-associated words and other words that are deemed to be inappropriate for children. While there does appear to be some upward trends in censorship for categories like “alcohol & drugs” and “profanity”, this doesn’t necessarily imply that Kidz Bop has become more strict on how they’re policing these lyrics. Oftentimes Kidz Bop will cover the most popular or highest charting songs of the year. Thus, these trends may better portray what “categories” of music are most successful among general society.
