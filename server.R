@@ -70,8 +70,12 @@ of censorship in the newest Kidz Bop record."))) +
       labs(title="Distribution of Censored Lyric Categories in Kidz Bop Over Time",
            x ="Year", 
            y = "Censorship Frequency")
-    
+#    updateSelectizeInput(session, 'category_selection', 
+#                         choices = c("alcohol & drugs", "profanity", "sexual",
+#                                     "identity", "other", "violence"), 
+#                         server = TRUE)
     return(category_hist)
+    
     
   }) #+
   
