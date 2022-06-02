@@ -54,7 +54,8 @@ tab_2 <- tabPanel(
     mainPanel(
       plotlyOutput(outputId = "category_hist"),
       h2("Findings"),
-      p("This visualization presents how frequently each category is censored in Kidz Bop songs over the dataset's timeline. Interacting with the chart helps us answer the question, 'What kinds of words experience the most censorship? Do certain categories of censored words get more censored than others If so, why?', along with, 'How does censorship in Kidz Bop reflect values of parents (or those doing the censorship) over time?'.  ")
+      p("This visualization presents how frequently each category is censored in Kidz Bop songs in each year over the dataset's timeline. Interacting with the chart helps us answer the question, 'What kinds of words experience the most censorship? Do certain categories of censored words get more censored than others If so, why?', along with, 'How does censorship in Kidz Bop reflect values of parents (or those doing the censorship) over time?'.  "),
+      p("Upon utilizing the chart's features, it is observed that lyrics under the 'alcohol & drugs', 'profanity', and 'sexual' categories tend to undergo more censorship than the other categories ('violence', 'identity', and 'other'). While this could suggest that language surrounding the more censored categories are policed more than the less censored categories, it is important to keep in mind that Kidz Bop covers the biggest pop hits of the year. Thus, the trends observed may better portray what 'categories' of music reach the most success in the charts rather than the values of parents.")
     )
   )
 )
