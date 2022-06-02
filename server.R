@@ -79,9 +79,9 @@ of censorship in the newest Kidz Bop record."))) +
       geom_point(aes(x = category, 
                      y = ogArtist,
                      size = word_total)) + 
-      labs(title="Title",
-           x ="Year", 
-           y = "Censorship Frequency")
+      labs(title="Censorship by Artist by Category",
+           x ="", 
+           y = "")
     
     return(scattered_artist) 
     

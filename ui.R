@@ -104,13 +104,14 @@ tab_3 <- tabPanel(
           choices = c("alcohol & drugs", 
                       "identity", 
                       "profanity", 
-                      "sexual", "violence", 
+                      "sexual", 
+                      "violence", 
                       "other"),
           selected = c("alcohol & drugs", 
                        "identity", 
                        "profanity", 
-                       "sexual", "violence", 
-                       "other")
+                       "sexual", 
+                       "violence")
         )
       ),
     mainPanel(
