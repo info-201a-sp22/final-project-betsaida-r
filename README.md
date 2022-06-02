@@ -1,4 +1,4 @@
-# Censo*rship in Kidz Bop Songs
+# Cens*rship in Kidz Bop Songs
 ### INFO 201 "Foundational Skills for Data Science" — Spring 2022
 
 Authors: Ramya Arivazhagan | Josh Auvaa | Kaylyn Le | Betsaida Rodriguez
