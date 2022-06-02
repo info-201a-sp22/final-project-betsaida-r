@@ -20,7 +20,7 @@ tab_1 <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       sliderInput(inputId = "year_selection",
-                  label = h3("Year Range"),
+                  label = h3("Select Years:"),
                   min(min(kb_df$year)),
                   max(max(kb_df$year)),
                   sep = "",
