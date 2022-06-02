@@ -74,15 +74,15 @@ tab_2 <- tabPanel(
         multiple = T,
         selected = c("alcohol & drugs", "sexual", "profanity")
       ),
-#      sliderInput(
-#        inputId = "year_selection",
-#        label = h4("Select Years:"),
-#        min = min(kb_df$year),
-#        max = max(kb_df$year),
-#        step = 1,
-#        sep = "",
-#        value = c(2012, 2016)
-#      )
+      sliderInput(
+        inputId = "year_selection",
+        label = h4("Select Years:"),
+        min = min(kb_df$year),
+        max = max(kb_df$year),
+        step = 1,
+        sep = "",
+        value = c(2012, 2016)
+      )
     ),
     mainPanel(
       plotlyOutput(outputId = "category_hist"),
