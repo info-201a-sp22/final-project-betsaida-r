@@ -5,10 +5,6 @@ library(tidyverse)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
-by_badword <- kb_df %>% 
-  group_by(badword) %>% 
-  mutate(word_total = sum(count, na.rm = TRUE))
-
 server <- function(input, output) {
   
   # output tab 1
@@ -67,6 +63,10 @@ of censorship in the newest Kidz Bop record."))) +
   # output tab 3
   output$scatter_plot <- renderPlotly({
     
+    by_badword <- kb_df %>% 
+      group_by(badword) %>% 
+      mutate(word_total = sum(count, na.rm = TRUE))
+    
     badword_filtered <- by_badword %>% 
       filter(ogArtist %in% input$artist_select) %>% 
       filter(category %in% input$categories_selection) 
@@ -76,11 +76,10 @@ of censorship in the newest Kidz Bop record."))) +
                      y = ogArtist,
                      size = word_total)) + 
       labs(title="Title",
-           x ="Year", 
-           y = "Censorship Frequency")
+           x ="Category", 
+           y = "Artist")
     
     return(scattered_artist) 
-
     
   }) 
   
