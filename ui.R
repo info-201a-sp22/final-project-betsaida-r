@@ -64,32 +64,31 @@ tab_3 <- tabPanel(
   "Category Breakdown",
   sidebarLayout(
     sidebarPanel(
-      sliderInput(
-        inputId = "years_selection",
-        label = h4("Select Years:"),
-        min = min(kb_df$year),
-        max = max(kb_df$year),
-        step = 1,
-        sep = "",
-        value = c(2012, 2016)
-      ),
+#      sliderInput(
+#        inputId = "years_selection",
+#        label = h4("Select Years:"),
+#        min = min(kb_df$year),
+#        max = max(kb_df$year),
+#        step = 1,
+#        sep = "",
+#        value = c(2012, 2016)
+#      ),
       checkboxGroupInput(
         inputId = "categories_selection",
         label = h4("Select Categories to Compare:"),
         choices = c("alcohol & drugs", 
                     "identity",
+                    "other",
                     "profanity",
-                    "violence", 
-                    "other"),
+                    "violence"),
         selected = c("alcohol & drugs", 
                      "identity",
                      "profanity",
-                     "violence", 
-                     "other")
+                     "violence")
       )
     ),
     mainPanel(
-      plotlyOutput(outputId = "pie_chart"),
+      plotlyOutput(outputId = "category_pie"),
       h2("Findings")
     )
   )
