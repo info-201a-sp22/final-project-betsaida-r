@@ -5,12 +5,27 @@ library(markdown)
 library(shiny)
 source('server.R')
 
+unique_artist <- kb_df %>% 
+  group_by(songName) %>% 
+  mutate(artist_total = sum(count, na.rm = TRUE)) %>% 
+  group_by(ogArtist) %>% 
+  select(ogArtist, year, count) %>% 
+  mutate(word_total = sum(count)) %>% 
+  distinct(ogArtist, .keep_all = TRUE)
+
+
+my_theme <- bs_theme(bg = "#0b3d91",
+                     fg = "white", 
+                     primary = "#FCC780")
+
+my_theme <- bs_theme_update(my_theme, bootswatch = "sketchy")
+
 # Home page tab
 intro_tab <- tabPanel(
   # Title of tab
   "Overview",
   fluidPage(
-    h1("Introduction")
+    includeMarkdown("README.md")
   )
 )
 
@@ -70,32 +85,35 @@ tab_2 <- tabPanel(
 tab_3 <- tabPanel(
   "Category Breakdown",
   sidebarLayout(
-    sidebarPanel(
-#      sliderInput(
-#        inputId = "years_selection",
-#        label = h4("Select Years:"),
-#        min = min(kb_df$year),
-#        max = max(kb_df$year),
-#        step = 1,
-#        sep = "",
-#        value = c(2012, 2016)
-#      ),
-      checkboxGroupInput(
-        inputId = "categories_selection",
-        label = h4("Select Categories to Compare:"),
-        choices = c("alcohol & drugs", 
-                    "identity",
-                    "other",
-                    "profanity",
-                    "violence"),
-        selected = c("alcohol & drugs", 
-                     "identity",
-                     "profanity",
-                     "violence")
-      )
-    ),
+    sidebar_panel_widget <- sidebarPanel(
+      selectInput(
+        inputId = "artist_select",
+        label = h4("Select Artists to Compare:"),
+        choices = unique_artist$ogArtist,
+        # True allows you to select multiple choices...
+        multiple = T,
+        selected = c("Taylor Swift", 
+                     "Bruno Mars",
+                     "Ariana Grande",
+                     "Lady Gaga")
+      ),
+        checkboxGroupInput(
+          inputId = "categories_selection",
+          label = "Categories",
+          choices = c("alcohol & drugs", 
+                      "identity", 
+                      "profanity", 
+                      "sexual", "violence", 
+                      "other"),
+          selected = c("alcohol & drugs", 
+                       "identity", 
+                       "profanity", 
+                       "sexual", "violence", 
+                       "other")
+        )
+      ),
     mainPanel(
-      plotlyOutput(outputId = "category_pie"),
+      plotlyOutput(outputId = "scatter_plot"),
       h2("Findings")
     )
   )
@@ -107,14 +125,14 @@ conclusion <- tabPanel(
   # Title of tab
   "Conclusion",
   fluidPage(
-    h1("Summary")
-  )
+    h1("Summary"),
+ "Overall, more song lyrics have been censored over time. This observation prompts the question of whether song lyrics have gotten more explicit over time, or if uncensored lyrics from years past are being censored in current songs.The most censored category of words overall is “Profanity,” which includes many/most swear words. We also see from the charts that “Identity” is the least censored category, and this includes words that describe gender and sexuality, such as “woman,” and “lesbian.” The “Other” category also sees the least censorship, which includes religiously-associated words and other words that are deemed to be inappropriate for children. While there does appear to be some upward trends in censorship for categories like “alcohol & drugs” and “profanity”, this doesn’t necessarily imply that Kidz Bop has become more strict on how they’re policing these lyrics. Oftentimes Kidz Bop will cover the most popular or highest charting songs of the year. Thus, these trends may better portray what “categories” of music are most successful among general society." )
 )
 
 
 
 ui <- navbarPage(
-  #theme = ,
+  theme = my_theme,
   "Cens*rship in Kidz Bop Songs",
   intro_tab,
   tab_1,
