@@ -6,6 +6,14 @@ library(shiny)
 
 kb_df <- read.csv("https://raw.githubusercontent.com/the-pudding/data/master/kidz-bop/KB_censored-lyrics.csv", stringsAsFactors = F)
 
+unique_artist <- kb_df %>% 
+  group_by(songName) %>% 
+  mutate(artist_total = sum(count, na.rm = TRUE)) %>% 
+  group_by(ogArtist) %>% 
+  select(ogArtist, year, count) %>% 
+  mutate(word_total = sum(count)) %>% 
+  distinct(ogArtist, .keep_all = TRUE)
+
 # Home page tab
 intro_tab <- tabPanel(
   # Title of tab
@@ -65,32 +73,35 @@ tab_2 <- tabPanel(
 tab_3 <- tabPanel(
   "Category Breakdown",
   sidebarLayout(
-    sidebarPanel(
-#      sliderInput(
-#        inputId = "years_selection",
-#        label = h4("Select Years:"),
-#        min = min(kb_df$year),
-#        max = max(kb_df$year),
-#        step = 1,
-#        sep = "",
-#        value = c(2012, 2016)
-#      ),
-      checkboxGroupInput(
-        inputId = "categories_selection",
-        label = h4("Select Categories to Compare:"),
-        choices = c("alcohol & drugs", 
-                    "identity",
-                    "other",
-                    "profanity",
-                    "violence"),
-        selected = c("alcohol & drugs", 
-                     "identity",
-                     "profanity",
-                     "violence")
-      )
-    ),
+    sidebar_panel_widget <- sidebarPanel(
+      selectInput(
+        inputId = "artist_select",
+        label = h4("Select Artists to Compare:"),
+        choices = unique_artist$ogArtist,
+        # True allows you to select multiple choices...
+        multiple = T,
+        selected = c("Taylor Swift", 
+                     "Bruno Mars",
+                     "Ariana Grande",
+                     "Lady Gaga")
+      ),
+        checkboxGroupInput(
+          inputId = "categories_selection",
+          label = "Categories",
+          choices = c("alcohol & drugs", 
+                      "identity", 
+                      "profanity", 
+                      "sexual", "violence", 
+                      "other"),
+          selected = c("alcohol & drugs", 
+                       "identity", 
+                       "profanity", 
+                       "sexual", "violence", 
+                       "other")
+        )
+      ),
     mainPanel(
-      plotlyOutput(outputId = "category_pie"),
+      plotlyOutput(outputId = "scatter_plot"),
       h2("Findings")
     )
   )
